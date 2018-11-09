@@ -1,5 +1,7 @@
 package com.example.wxapi;
 import android.os.Bundle;
+
+import com.example.wxapi.wxapi.WXEntryActivity;
 import com.tencent.mm.opensdk.utils.Log;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -16,7 +18,6 @@ public class MainActivity extends UnityPlayerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView();
     }
     public String printLinkSuccess(){
         return "link success";
@@ -28,22 +29,9 @@ public class MainActivity extends UnityPlayerActivity {
                 // 通过code获取授权口令access_token
                 getAccessToken(code);
                 Log.i("获取token成功",code.toString());
-                // 从手机本地获取存储的授权口令信息，判断是否存在access_token，不存在请求获取，存在就判断是否过期
-                String accessToken = (String) ShareUtils.getValue(MainActivity.this, WEIXIN_ACCESS_TOKEN_KEY,
-                        "none");
-                String openid = (String) ShareUtils.getValue(MainActivity.this, WEIXIN_OPENID_KEY, "");
-                if (!"none".equals(accessToken)) {
-                    // 有access_token，判断是否过期有效
-                    isExpireAccessToken(accessToken, openid);
-                } else {
-                    // 没有access_token
-                    getAccessToken(code);
-                    Log.i("获取token成功",code.toString());
-                }
             }
         });
-        Log.i("登录成功","aaaaaaaaaaaaaaaaaaaaaaaaaa");
-
+        Log.i("登陆成功","aaaaaaaaaaa");
     }
 
     /**

@@ -1,7 +1,8 @@
-package com.example.wxapi;
+package com.example.wxapi.wxapi;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.example.wxapi.MyApplication;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -64,12 +65,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
      * 登录微信
      */
     public static void loginWeixin(Context context, IWXAPI api, WeChatCode wechatCode) {
-        // 判断是否安装了微信客户端
-//        if (!api.isWXAppInstalled()) {
-//            Toast.makeText(context.getApplicationContext(), "您还未安装微信客户端！", Toast.LENGTH_SHORT)
-//                    .show();
-//            return;
-//        }
         mWeChatCode=wechatCode;
         // 发送授权登录信息，来获取code
         SendAuth.Req req = new SendAuth.Req();

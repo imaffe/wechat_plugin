@@ -1,4 +1,5 @@
 package com.example.wxapi;
+import com.example.wxapi.wxapi.WXEntryActivity;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 
 
