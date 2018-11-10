@@ -1,1 +1,1 @@
-include ':app', ':wxapi'
+include ':app', ':wxapi', ':wechat_plugin'
