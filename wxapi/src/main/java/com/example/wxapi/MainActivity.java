@@ -2,6 +2,7 @@ package com.example.wxapi;
 import android.os.Bundle;
 
 import com.example.wxapi.wxapi.WXEntryActivity;
+import com.google.gson.Gson;
 import com.tencent.mm.opensdk.utils.Log;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -24,11 +25,13 @@ public class MainActivity extends UnityPlayerActivity {
     }
     public void weiLogin() {
         WXEntryActivity.loginWeixin(MainActivity.this, MyApplication.sApi, new WXEntryActivity.WeChatCode() {
+
             @Override
             public void getResponse(String code) {
                 // 通过code获取授权口令access_token
-                getAccessToken(code);
-                Log.i("获取token成功",code.toString());
+                // getAccessToken(code);
+                UnitySendMessage.Send(code);
+                Log.i("获取code成功",code.toString());
             }
         });
         Log.i("登陆成功","aaaaaaaaaaa");
@@ -58,7 +61,6 @@ public class MainActivity extends UnityPlayerActivity {
         });
 
     }
-
     /**
      * 微信登录处理获取的授权信息结果
      *
@@ -66,20 +68,21 @@ public class MainActivity extends UnityPlayerActivity {
      */
     public void processGetAccessTokenResult(String response) {
         // 验证获取授权口令返回的信息是否成功
+        Gson mGson = new Gson();
         if (validateSuccess(response)) {
             // 使用Gson解析返回的授权口令信息
-            //  WXAccessTokenInfo tokenInfo = mGson.fromJson(response, WXAccessTokenInfo.class);
+              WXAccessTokenInfo tokenInfo = mGson.fromJson(response, WXAccessTokenInfo.class);
             // 保存信息到手机本地
-            //  saveAccessInfotoLocation(tokenInfo);
+              //saveAccessInfotoLocation(tokenInfo);
+            // 保存到某个
             // 获取用户信息
-            //  getUserInfo(tokenInfo.getAccess_token(), tokenInfo.getOpenid());
+              getUserInfo(tokenInfo.getAccess_token(), tokenInfo.getOpenid());
         } else {
             // 授权口令获取失败，解析返回错误信息
-            //  WXErrorInfo wxErrorInfo = mGson.fromJson(response, WXErrorInfo.class);
-
+            //WXErrorInfo wxErrorInfo = mGson.fromJson(response, WXErrorInfo.class);
+            Log.i("授权口令获取失败，返回了错误信息","aaa");
         }
     }
-
     /**
      *微信登录获取tokenInfo的WEIXIN_OPENID_KEY，WEIXIN_ACCESS_TOKEN_KEY，WEIXIN_REFRESH_TOKEN_KEY保存到shareprephence中
      * @param tokenInfo
@@ -89,7 +92,6 @@ public class MainActivity extends UnityPlayerActivity {
         ShareUtils.saveValue(MyApplication.mContext,WEIXIN_ACCESS_TOKEN_KEY,tokenInfo.getAccess_token());
         ShareUtils.saveValue(MyApplication.mContext,WEIXIN_REFRESH_TOKEN_KEY,tokenInfo.getRefresh_token());
     }
-
     /**
      * 验证是否成功
      *
@@ -101,8 +103,6 @@ public class MainActivity extends UnityPlayerActivity {
         return (errFlag.contains(response) && !"ok".equals(response))
                 || (!"errcode".contains(response) && !errFlag.contains(response));
     }
-
-
     /**
      * 微信登录判断accesstoken是过期
      *
