@@ -21,7 +21,7 @@ public class MainActivity extends UnityPlayerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    public String printLinkSuccess(){
+    public String printL1inkSuccess(){
         return "link success";
     }
     public void weiLogin() {
