@@ -2,6 +2,12 @@
 
 ## Unity 脚本调用 Android Plugin
 
+#### 文件夹位置
+
+- 将AndroidManifest.xml 放到 Assets->Plugins->Android目录下
+
+- 将aar 放在 Unity Project的Assets->Plugins->Android目录下，用压缩软件打开aar，删除libs目录下的classes.jar就可以导入成功了
+
 #### Android Lib中的接口函数
 
 - public String weiLogin()
