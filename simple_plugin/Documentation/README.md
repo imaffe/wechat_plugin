@@ -16,7 +16,7 @@
   void OnRecvCode(string message){...}
   ```
 
-的生命事，Android穿过来的code（或者消息）在message中，由此可以进行部分调用
+  的声明式，Android穿过来的code（或者消息）在message中，由此可以进行部分调用
 
 #### C#脚本获得访问
 
@@ -31,4 +31,8 @@ string login_res = jo.Call<string>("weiLogin");
 ```
 
 ## Android Plugin 代码结构
+
+#### MainActivity的解释
+
+#### WXEntryActivity的解释
 
