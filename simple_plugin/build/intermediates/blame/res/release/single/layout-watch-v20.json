@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\Users\\affe\\AndroidStudioProjects\\KFC_Wx\\simple_plugin\\build\\intermediates\\res\\merged\\release\\layout-watch-v20\\abc_alert_dialog_button_bar_material.xml",
+        "source": "C:\\Users\\affe\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d83c2133e15ce38e0bdd12a6f03fdc43\\res\\layout-watch-v20\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\affe\\AndroidStudioProjects\\KFC_Wx\\simple_plugin\\build\\intermediates\\res\\merged\\release\\layout-watch-v20\\abc_alert_dialog_title_material.xml",
+        "source": "C:\\Users\\affe\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d83c2133e15ce38e0bdd12a6f03fdc43\\res\\layout-watch-v20\\abc_alert_dialog_title_material.xml"
+    }
+]
