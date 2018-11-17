@@ -20,9 +20,12 @@ public class MainActivity extends UnityPlayerActivity {
         m_wxapi = WXAPIFactory.createWXAPI(this, AppConst.WEIXIN_APP_ID);
         m_wxapi.registerApp(AppConst.WEIXIN_APP_ID);
     }
-    public String test(){return "simple link success";}
+    public String setReceiver(String g, String m){
+        UnityMessageSender.setReceiver(g,m);
+        return "set Receiver Success";
+    }
 
-    public static String weiLogin(){
+    public String weiLogin(String GameObject, String MethodName){
         if(m_wxapi == null) {
             UnityMessageSender.Send("message send test");
             return "no wxapi created";
@@ -38,7 +41,7 @@ public class MainActivity extends UnityPlayerActivity {
         return "return value success";
     }
 
-    public static String  registerApp(){
+    public String  registerApp(){
         if(null != m_wxapi){
             m_wxapi.registerApp(AppConst.WEIXIN_APP_ID);
             return "register success";
