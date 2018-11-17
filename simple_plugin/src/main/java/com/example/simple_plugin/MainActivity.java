@@ -1,13 +1,9 @@
 package com.example.simple_plugin;
 
 import android.os.Bundle;
-
-import com.example.simple_plugin.wxapi.TestWxapi;
-import com.example.simple_plugin.wxapi.WXEntryActivity;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.tencent.mm.opensdk.utils.Log;
 import com.unity3d.player.UnityPlayerActivity;
 
 public class MainActivity extends UnityPlayerActivity {
