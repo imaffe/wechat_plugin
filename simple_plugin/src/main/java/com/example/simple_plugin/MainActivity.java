@@ -13,10 +13,14 @@ public class MainActivity extends UnityPlayerActivity {
         super.onCreate(savedInstanceState);
     }
     public String test(){return "simple link success";}
-    public void weiLogin() {
-        WXEntryActivity.registerApp();
-        WXEntryActivity.wxLogin();
-        //TestWxapi.testWxapi();
-        //Log.i("登陆成功","aaaaaaaaaaa");
+    public String weiLogin() {
+
+        String resp = WXEntryActivity.wxLogin();
+        return resp;
+    }
+
+    public String registerAPI(){
+        String resp = WXEntryActivity.registerApp();
+        return resp;
     }
 }

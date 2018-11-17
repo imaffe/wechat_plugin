@@ -12,6 +12,7 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.unity3d.player.UnityPlayer;
 
 import org.json.JSONObject;
 
@@ -21,8 +22,9 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 微信事件回调接口注册
-        m_wxapi = WXAPIFactory.createWXAPI(this, AppConst.WEIXIN_APP_ID,false);
-
+        m_wxapi = WXAPIFactory.createWXAPI(this, AppConst.WEIXIN_APP_ID);
+        m_wxapi.registerApp(AppConst.WEIXIN_APP_ID);
+        UnityMessageSender.Send("onCreate excuted");
         try{
             m_wxapi.handleIntent(getIntent(),this);
         } catch (Exception ex){
@@ -30,17 +32,30 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         }
     }
 
-    public static void wxLogin(){
+    public static String wxLogin(){
+        if(m_wxapi == null) {
+            UnityMessageSender.Send("message send test");
+            return "no wxapi created";
+        }
+        if (!m_wxapi.isWXAppInstalled()) {
+            return "not installed";
+         }
         final SendAuth.Req req = new SendAuth.Req();
         req.scope = "snsapi_userinfo";
         req.state = "app_wechat";
+        UnityMessageSender.Send("unity message send success");
         m_wxapi.sendReq(req);
+        return "return value success";
     }
-    public static void registerApp(){
+
+    public static String  registerApp(){
         if(null != m_wxapi){
             m_wxapi.registerApp(AppConst.WEIXIN_APP_ID);
+            return "register success";
         }
+        else return "register failed";
     }
+
     @Override
     public void onReq(BaseReq req) {
         switch (req.getType()) {
