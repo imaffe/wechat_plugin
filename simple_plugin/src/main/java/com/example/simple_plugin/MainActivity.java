@@ -40,12 +40,4 @@ public class MainActivity extends UnityPlayerActivity {
         m_wxapi.sendReq(req);
         return "return value success";
     }
-
-    public String  registerApp(){
-        if(null != m_wxapi){
-            m_wxapi.registerApp(AppConst.WEIXIN_APP_ID);
-            return "register success";
-        }
-        else return "register failed";
-    }
 }
