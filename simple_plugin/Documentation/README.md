@@ -48,3 +48,9 @@ OnCreate 需要创建一个MainActivity的WXApi，（WXEntryActivity中也有一
 
 WXEntryActivity的声明必须和code 一样，也就是继承Activity并且implement IWXAPIEvenHandler, 所有的注册都按照code的写法进行，就行了，（create 和 register 两个缺一不可），然后就是WXEntryActivity必须完成的两个函数，OnResp 和 OnReq, 在我们这里，只用完成OnResp就可以了，当我们接收到微信发送的code时，不经处理直接把code通过UnityMessageSender工具类发送给Unity上的某个Object，这样通讯就完成了。
 
+## Client Server 交互模式
+
+- client获得code，请求client的一个service 叫 kfsWechatGetAuthTokens，通过这个拿到一系列的tokenID，openID,unionID,然后再把三个东西发送给Server的 kfsLoginWechatCL service (以上两个service 再 kfsClientService.py里面)请求登陆，server拿这三个信息得到用户信息，存到数据库里面去。
+
+
+
